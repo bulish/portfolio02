@@ -1,0 +1,103 @@
+.basic-form {
+  min-width: 25rem;
+  width: fit-content;
+  padding: 2rem 1rem;
+  margin: auto;
+
+  background-color: $black;
+  border: 1px solid $borders;
+
+  &.basic-form--full-width {
+    width: 100%;
+
+    @media (max-width: 1023px) {
+      padding: 0 !important;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    width: 100%;
+    min-width: 100%;
+    padding: 2rem 1rem;
+  }
+
+  h1 {
+    color: $black;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="password"],
+  input[type="checkbox"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 0.25rem 0;
+    display: block;
+    margin-top: 0.5rem;
+
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid $borders;
+
+    outline: none;
+    color: $white;
+    font-size: clamp(0.8rem, 0.8vw, 1.38rem);
+
+    &:not(:read-only) {
+      border-bottom: 1px solid $borders;
+    }
+
+    &::placeholder {
+      color: $white;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  input[type="checkbox"] {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  input[type="radio"]:checked + label {
+    background-color: $primary !important;
+    color: $white !important;
+  }
+
+  .form__input label:not(.button) {
+    text-transform: uppercase;
+    font-size: clamp(0.7rem, 0.7vw, 1.1rem);
+    color: $white;
+  }
+
+  .error {
+    font-size: clamp(0.6rem, 0.6vw, 1.15rem);
+    color: $error;
+    font-weight: 500;
+  }
+
+  input:-webkit-autofill,
+  select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 50px white inset;
+    -webkit-text-fill-color: $black;
+    outline: none !important;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+}

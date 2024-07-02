@@ -16,7 +16,7 @@ const Home: NextPage = () => {
           <p className="text my-8">
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In rutrum. Nullam at arcu a est sollicitudin euismod. Nulla pulvinar eleifend sem. Aliquam ornare wisi eu metus. Etiam bibendum elit eget erat. Et harum quidem rerum facilis est et expedita distinctio. Morbi scelerisque luctus velit.
           </p>
-
+          
           <button className="button flex label gap-2 items-center w-max">
             <Image src={icon.src}
               alt="Download"
@@ -30,7 +30,7 @@ const Home: NextPage = () => {
         <div className="w-full"></div>
       </div>
     </main>
-  );
+  )
 }
 
 export default Home

@@ -1,0 +1,16 @@
+.button {
+  padding: 0.45rem 1rem;
+
+  background-color: $secondary;
+  border-radius: 10px;
+
+  transition: all 350ms;
+
+  &:hover {
+    background-color: darken($color: $secondary, $amount: 20%);
+  }
+}
+
+.button--large {
+  padding: 0.35rem 1.25rem;
+}

@@ -1,0 +1,13 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import './fonts';
+@import './variables';
+@import './globals';
+@import './typography';
+
+@import './components/socials';
+@import './components/forms';
+@import './components/checkbox';
+@import './components/button';
