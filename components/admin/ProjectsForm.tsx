@@ -1,30 +1,30 @@
-"use client";
+"use client"
 
-import { FC, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { IProject } from "@modules/Project";
-import { Form } from "@components/forms/Form";
-import { projectInputs } from "@modules/forms/ProjectForm";
-import { ICategoryOption } from "@modules/CategoryOption";
-import { ISelect } from "@modules/forms/Inputs";
+import { FC, useEffect, useState } from "react"
+import { useForm } from "react-hook-form"
+import { IProject } from "@modules/Project"
+import { Form } from "@components/forms/Form"
+import { projectInputs } from "@modules/forms/ProjectForm"
+import { ICategoryOption } from "@modules/CategoryOption"
+import { ISelect } from "@modules/forms/Inputs"
 
 export interface IProjectsFormProps {
   categories: ICategoryOption[]
 }
 
 const ProjectsForm: FC<IProjectsFormProps> = (props: IProjectsFormProps) => {
-  const [loadingBtn, setLoadingBtn] = useState<boolean>(false);
+  const [loadingBtn, setLoadingBtn] = useState<boolean>(false)
   const [inputs, setInputs] = useState(projectInputs)
 
   const {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm<IProject>();
+  } = useForm<IProject>()
 
   const onSubmit = (data: IProject) => {
-    setLoadingBtn(true);
-  };
+    setLoadingBtn(true)
+  }
 
   useEffect(() => {
     setInputs(prevInputs =>
@@ -33,12 +33,12 @@ const ProjectsForm: FC<IProjectsFormProps> = (props: IProjectsFormProps) => {
           return {
             ...input,
             options: props.categories,
-          } as ISelect<IProject>;
+          } as ISelect<IProject>
         }
-        return input;
+        return input
       })
-    );
-  }, [props.categories]);  
+    )
+  }, [props.categories])  
 
   return (
     <form
@@ -51,7 +51,7 @@ const ProjectsForm: FC<IProjectsFormProps> = (props: IProjectsFormProps) => {
         register={register}
       />
     </form>
-  );
-};
+  )
+}
 
-export default ProjectsForm;
+export default ProjectsForm

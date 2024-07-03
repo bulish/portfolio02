@@ -1,4 +1,4 @@
-import { INavLink } from "@modules/NavLink";
+import { INavLink } from "@modules/NavLink"
 import * as ROUTES from "@constants/routes"
 
 export const headerData: INavLink[] = [

@@ -1,5 +1,5 @@
-import { ButtonType } from "@modules/Button";
-import { IAdminTableConfig } from "@modules/admin/Table";
+import { ButtonType } from "@modules/Button"
+import { IAdminTableConfig } from "@modules/admin/Table"
 
 export const categoriesTableConfig: IAdminTableConfig = {
   tableName: "Category",

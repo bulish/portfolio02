@@ -1,8 +1,8 @@
-"use client";
+"use client"
 
-import { ButtonType, IButton } from "@modules/Button";
-import { IAdminTableProps } from "@modules/admin/Table";
-import AdminButton from "./Buttons";
+import { ButtonType, IButton } from "@modules/Button"
+import { IAdminTableProps } from "@modules/admin/Table"
+import AdminButton from "./Buttons"
 
 const AdminTable = <T extends { [key: string]: string | number }>({ data, config }: IAdminTableProps<T>) => {
   const { colgroups, thead, parameters, buttons } = config
@@ -31,7 +31,7 @@ const AdminTable = <T extends { [key: string]: string | number }>({ data, config
           {data.map((item: T, key: number) => {
             const wantedParams = Object.keys(item).filter(i => parameters.includes(i))
             return <tr key={key}
-              className={`${key < thead.length - 1 ? 'border-b border-borders' : ''}`}>
+              className='border-b border-borders'>
               {wantedParams.map((param: string, paramKey: number) => {
                 return <td key={paramKey}
                   className={`text-left py-2 px-4 ${paramKey < thead.length - 1 ? 'border-r border-borders' : ''}`}>
@@ -53,7 +53,7 @@ const AdminTable = <T extends { [key: string]: string | number }>({ data, config
 
       </table>
     </div>
-  );
-};
+  )
+}
 
-export default AdminTable;
+export default AdminTable

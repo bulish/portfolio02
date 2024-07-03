@@ -1,0 +1,30 @@
+/* General toast style */
+[data-sonner-toast] {
+  will-change: opacity !important;
+  color: white; /* Default text color */
+  padding: 16px;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+/* Success toast style */
+[data-type="success"] {
+  background-color: #28a745; /* Green */
+}
+
+/* Error toast style */
+[data-type="error"] {
+  background-color: #dc3545; /* Red */
+}
+
+/* Info toast style */
+[data-type="info"] {
+  background-color: #17a2b8; /* Blue */
+}
+
+/* Warning toast style */
+[data-type="warning"] {
+  background-color: #ffc107; /* Yellow */
+}
+

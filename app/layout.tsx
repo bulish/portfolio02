@@ -6,6 +6,7 @@ import "../styles/app.scss";
 import { Header } from "@components/shared/Header";
 import { SocialsPanel } from "@components/shared/SocialsPanel";
 import { NamePanel } from "@components/shared/NamePanel";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,6 +29,7 @@ export default function RootLayout({
             <div className="flex-grow">{children}</div>
             <NamePanel />
         </div>
+        <Toaster position="bottom-center" richColors expand={true}/>
       </body>
     </html>
   );

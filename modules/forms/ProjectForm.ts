@@ -1,5 +1,5 @@
-import { IProject } from "@modules/Project";
-import { IGeneralInput, InputType } from "./Inputs";
+import { IProject } from "@modules/Project"
+import { IGeneralInput, InputType } from "./Inputs"
 
 export const projectInputs: IGeneralInput<IProject>[] = [
   {
@@ -42,4 +42,4 @@ export const projectInputs: IGeneralInput<IProject>[] = [
     required: "Obrázky jsou povinné",
     type: InputType.TEXT,
   },
-];
+]

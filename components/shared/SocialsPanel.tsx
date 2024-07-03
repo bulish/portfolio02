@@ -1,10 +1,10 @@
-import { FC } from "react";
+import { FC } from "react"
 
 // data and model
-import { ISocial } from "@modules/Socials";
-import { socialsData } from "@data/socials";
+import { ISocial } from "@modules/Socials"
+import { socialsData } from "@data/socials"
 
-import Image from "next/image";
+import Image from "next/image"
 
 export const SocialsPanel: FC = () => {
     return <div className="fixed top-0 h-full w-16 border-r-[0.5px] border-borders">

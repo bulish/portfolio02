@@ -1,7 +1,6 @@
-import { ButtonSize, IButton } from "@modules/Button";
-import { FC } from "react";
-import Image from "next/image";
-import { ButtonLoading } from "./ButtonLoading";
+import { ButtonSize, IButton } from "@modules/Button"
+import { FC } from "react"
+import { ButtonLoading } from "./ButtonLoading"
 
 const Button: FC<IButton> = (props: IButton) => {
   return (
@@ -17,20 +16,12 @@ const Button: FC<IButton> = (props: IButton) => {
         <ButtonLoading />
       ) : (
         <>
-          {props.icon && (
-            <Image
-              src={props.icon}
-              alt={props.label ?? ""}
-              width={25}
-              height={25}
-            />
-          )}
-
+          {props.icon && props.icon}
           {props.label}
         </>
       )}
     </button>
-  );
-};
+  )
+}
 
-export default Button;
+export default Button

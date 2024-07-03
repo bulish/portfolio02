@@ -1,5 +1,5 @@
-import { IProject } from "@modules/Project";
-import { IGeneralInput, InputType } from "./Inputs";
+import { IProject } from "@modules/Project"
+import { IGeneralInput, InputType } from "./Inputs"
 
 export const categoryInputs: IGeneralInput<IProject>[] = [
   {
@@ -8,4 +8,4 @@ export const categoryInputs: IGeneralInput<IProject>[] = [
     required: "Label is required",
     type: InputType.TEXT,
   },
-];
+]
