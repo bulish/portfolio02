@@ -1,5 +1,5 @@
-import { FieldValues } from "react-hook-form"
-import { IGeneralInput } from "./Inputs"
+import { FieldValues } from 'react-hook-form'
+import { IGeneralInput } from './Inputs'
 
 export interface IForm<T extends FieldValues> {
   data: IGeneralInput<T>[]

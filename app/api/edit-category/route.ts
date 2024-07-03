@@ -1,27 +1,30 @@
-import prisma from "@lib/prisma"
-import { NextRequest, NextResponse } from "next/server"
+import prisma from '@lib/prisma'
+import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(request: NextRequest) {
   try {
-    const res = await request.json();
+    const res = await request.json()
     const result = await prisma.category.update({
       where: {
-        id: res.id
+        id: res.id,
       },
       data: {
-        label: res.label
-      }
-    });
+        label: res.label,
+      },
+    })
 
     return NextResponse.json({
       data: result,
-      mess: "Category was updated successfully"
-    });
+      mess: 'Category was updated successfully',
+    })
   } catch (error) {
-    console.error("Error updating category:", error);
+    console.error('Error updating category:', error)
 
-    return NextResponse.json({
-      error: "An error occurred while updating the category"
-    }, { status: 500 });
+    return NextResponse.json(
+      {
+        error: 'An error occurred while updating the category',
+      },
+      { status: 500 }
+    )
   }
 }

@@ -18,15 +18,15 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": [
-    "react",
-    "jsx-a11y",
-    "import"
-  ],
+  "plugins": ["react", "jsx-a11y", "import"],
   "rules": {
     "semi": ["error", "never"],
+    "function-paren-newline": ["error", "multiline"],
     "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 1 }],
-    "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
+    "no-unused-vars": [
+      "error",
+      { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }
+    ],
     "import/no-unused-modules": [1, { "unusedExports": true }],
     "react/react-in-jsx-scope": "off",
     "react/jsx-uses-react": "off",

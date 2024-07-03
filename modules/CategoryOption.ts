@@ -1,5 +1,5 @@
 export interface ICategoryOption {
-  label: string;
-  value: string;
-  id: string;
+  label: string
+  value: string
+  id: string
 }

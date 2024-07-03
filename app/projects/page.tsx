@@ -1,5 +1,5 @@
-import { NextPage } from "next"
-import prisma from "@lib/prisma"
+import { NextPage } from 'next'
+import prisma from '@lib/prisma'
 
 async function getProjects() {
   const projects = await prisma.project.findMany({
@@ -11,13 +11,13 @@ async function getProjects() {
 
 const Projects: NextPage = async () => {
   const projects = await getProjects()
-  console.log({projects})
+  console.log({ projects })
 
   return (
     <main className="pt-24 w-full max-width h-full">
       <h1>projects</h1>
     </main>
-  );
+  )
 }
 
 export default Projects

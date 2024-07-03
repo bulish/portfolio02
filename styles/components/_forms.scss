@@ -25,12 +25,12 @@
     color: $black;
   }
 
-  input[type="text"],
-  input[type="number"],
-  input[type="email"],
-  input[type="tel"],
-  input[type="password"],
-  input[type="checkbox"],
+  input[type='text'],
+  input[type='number'],
+  input[type='email'],
+  input[type='tel'],
+  input[type='password'],
+  input[type='checkbox'],
   textarea,
   select {
     width: 100%;
@@ -59,14 +59,14 @@
     }
   }
 
-  input[type="checkbox"] {
+  input[type='checkbox'] {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
   }
 
-  input[type="radio"]:checked + label {
+  input[type='radio']:checked + label {
     background-color: $primary !important;
     color: $white !important;
   }
@@ -96,7 +96,7 @@
     margin: 0;
   }
 
-  input[type="number"] {
+  input[type='number'] {
     -moz-appearance: textfield;
     appearance: textfield;
   }

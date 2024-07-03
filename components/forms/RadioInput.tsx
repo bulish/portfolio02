@@ -1,6 +1,6 @@
-import { IRadioInput, IOption } from "@modules/forms/Inputs"
-import { FieldValues, Path } from "react-hook-form"
-import React from "react"
+import { IRadioInput, IOption } from '@modules/forms/Inputs'
+import { FieldValues, Path } from 'react-hook-form'
+import React from 'react'
 
 export const RadioInput: <T extends FieldValues>(
   props: IRadioInput<T>
@@ -14,14 +14,14 @@ export const RadioInput: <T extends FieldValues>(
   readOnly,
 }: IRadioInput<T>) => {
   return (
-    <div className={`${noPaddingOnMobile ? "md:" : ""}mb-4 form__input`}>
+    <div className={`${noPaddingOnMobile ? 'md:' : ''}mb-4 form__input`}>
       <label htmlFor={id}>{placeholder}</label>
       <div>
         {options.map((option: IOption, key: number) => {
           return (
             <div
               key={key}
-              className={options.length > 2 ? "w-full my-2" : "inline"}
+              className={options.length > 2 ? 'w-full my-2' : 'inline'}
             >
               <input
                 type="radio"
@@ -37,8 +37,8 @@ export const RadioInput: <T extends FieldValues>(
               />
               <label
                 htmlFor={option.value}
-                className={`${key === 1 && options.length === 2 ? "ml-2" : ""}
-                  ${options.length > 2 ? "w-full block" : ""}
+                className={`${key === 1 && options.length === 2 ? 'ml-2' : ''}
+                  ${options.length > 2 ? 'w-full block' : ''}
                   button button--small button--light cursor-pointer`}
               >
                 {option.label}

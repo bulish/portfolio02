@@ -1,5 +1,5 @@
-import { Dispatch, SetStateAction } from "react"
-import { ICategoryOption } from "./CategoryOption"
+import { Dispatch, SetStateAction } from 'react'
+import { ICategoryOption } from './CategoryOption'
 
 export interface AppProviderInterface {
   loading: boolean

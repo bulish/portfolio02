@@ -1,21 +1,21 @@
-import { FieldValues, Path, UseFormRegister } from "react-hook-form"
+import { FieldValues, Path, UseFormRegister } from 'react-hook-form'
 
 export enum InputType {
-  TEXT = "text",
-  NUMBER = "number",
-  PASSWORD = "password",
-  SELECT = "select",
-  RADIO = "radio",
-  CHECKBOX = "checkbox",
-  TEXTAREA = "textarea"
+  TEXT = 'text',
+  NUMBER = 'number',
+  PASSWORD = 'password',
+  SELECT = 'select',
+  RADIO = 'radio',
+  CHECKBOX = 'checkbox',
+  TEXTAREA = 'textarea',
 }
 
 export type IGeneralInput<T extends FieldValues> =
-  | Omit<ISelect<T>, "register" | "errors">
-  | Omit<IBasicInput<T>, "register" | "errors">
-  | Omit<IRadioInput<T>, "register" | "errors">
-  | Omit<ICheckbox<T>, "register" | "errors">
-  | Omit<ITextarea<T>, "register" | "errors">
+  | Omit<ISelect<T>, 'register' | 'errors'>
+  | Omit<IBasicInput<T>, 'register' | 'errors'>
+  | Omit<IRadioInput<T>, 'register' | 'errors'>
+  | Omit<ICheckbox<T>, 'register' | 'errors'>
+  | Omit<ITextarea<T>, 'register' | 'errors'>
 
 export interface IBasicInput<T extends FieldValues> {
   placeholder: string

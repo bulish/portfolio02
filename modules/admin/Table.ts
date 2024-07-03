@@ -1,4 +1,4 @@
-import { IButton } from "@modules/Button"
+import { IButton } from '@modules/Button'
 
 export interface IAdminTableConfig {
   tableName: string
@@ -9,6 +9,6 @@ export interface IAdminTableConfig {
 }
 
 export interface IAdminTableProps<T> {
-  data: T[];
+  data: T[]
   config: IAdminTableConfig
 }

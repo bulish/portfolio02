@@ -1,3 +1,4 @@
 export enum Status {
-  NEW, EDIT
+  NEW,
+  EDIT,
 }

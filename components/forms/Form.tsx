@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import {
   IBasicInput,
@@ -6,17 +6,17 @@ import {
   IRadioInput,
   ISelect,
   InputType,
-} from "@modules/forms/Inputs"
-import { BasicInput } from "./BasicInput"
-import { FieldValues } from "react-hook-form"
-import { Select } from "./Select"
-import { RadioInput } from "./RadioInput"
-import { Checkbox } from "./Checkbox"
-import { IForm } from "@modules/forms/Form"
-import { Textarea } from "./Textarea"
+} from '@modules/forms/Inputs'
+import { BasicInput } from './BasicInput'
+import { FieldValues } from 'react-hook-form'
+import { Select } from './Select'
+import { RadioInput } from './RadioInput'
+import { Checkbox } from './Checkbox'
+import { IForm } from '@modules/forms/Form'
+import { Textarea } from './Textarea'
 
 export const Form: <T extends FieldValues>(props: IForm<T>) => JSX.Element = <
-  T extends FieldValues
+  T extends FieldValues,
 >({
   data,
   register,

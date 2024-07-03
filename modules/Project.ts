@@ -1,13 +1,13 @@
 export interface IProject {
-  title: string;
-  categoryId: number;
-  description: string;
-  published: boolean;
-  technologies: string[];
-  images: IImage[];
+  title: string
+  categoryId: number
+  description: string
+  published: boolean
+  technologies: string[]
+  images: IImage[]
 }
 
 export interface IImage {
-  id: string;
-  url: string;
+  id: string
+  url: string
 }

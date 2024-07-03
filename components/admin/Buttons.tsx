@@ -1,13 +1,13 @@
-"use client"
+'use client'
 
-import { FC } from "react"
-import Button from "@components/shared/Button"
-import { ButtonSize, ButtonType } from "@modules/Button"
-import Link from "next/link"
-import { FaPlusCircle, FaEdit, FaTrash } from "react-icons/fa"
-import { useRouter } from "next/navigation"
-import { toast } from "sonner"
-import { IAdminButton } from "@modules/admin/Button"
+import { FC } from 'react'
+import Button from '@components/shared/Button'
+import { ButtonSize, ButtonType } from '@modules/Button'
+import Link from 'next/link'
+import { FaPlusCircle, FaEdit, FaTrash } from 'react-icons/fa'
+import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
+import { IAdminButton } from '@modules/admin/Button'
 
 const AdminButton: FC<IAdminButton> = ({ tableName, id, type, loading }) => {
   const router = useRouter()
@@ -15,7 +15,7 @@ const AdminButton: FC<IAdminButton> = ({ tableName, id, type, loading }) => {
   async function handleDelete() {
     try {
       const response = await fetch(`/api/${tableName?.toLowerCase()}/${id}`, {
-        method: "DELETE"
+        method: 'DELETE',
       })
 
       const result = await response.json()
@@ -24,20 +24,22 @@ const AdminButton: FC<IAdminButton> = ({ tableName, id, type, loading }) => {
       else if (result.error) toast.error(result.error)
 
       router.refresh()
-    } catch(e) {
+    } catch (e) {
       toast.error(e as string)
     }
   }
 
   switch (type) {
     case ButtonType.edit:
-      return <Link
-      className="button flex items-center gap-3 w-max font-medium"
-      href={`/admin/${tableName?.toLowerCase()}/${id}`}
-    >
-      <FaEdit />
-      Edit
-    </Link>
+      return (
+        <Link
+          className="button flex items-center gap-3 w-max font-medium"
+          href={`/admin/${tableName?.toLowerCase()}/${id}`}
+        >
+          <FaEdit />
+          Edit
+        </Link>
+      )
 
     case ButtonType.add:
       return (
@@ -51,19 +53,24 @@ const AdminButton: FC<IAdminButton> = ({ tableName, id, type, loading }) => {
       )
 
     case ButtonType.delete:
-      return <Button
-        label="Delete"
-        size={ButtonSize.normal}
-        handleClick={handleDelete}
-        icon={<FaTrash />} />
+      return (
+        <Button
+          label="Delete"
+          size={ButtonSize.normal}
+          handleClick={handleDelete}
+          icon={<FaTrash />}
+        />
+      )
 
     case ButtonType.submit:
-      return <Button
-        type={type}
-        label="Save"
-        size={ButtonSize.normal}
-        loading={loading}
-       />
+      return (
+        <Button
+          type={type}
+          label="Save"
+          size={ButtonSize.normal}
+          loading={loading}
+        />
+      )
 
     default:
       return <Button label="Button" />

@@ -1,10 +1,10 @@
-import { NextPage } from "next";
-import ProjectsForm from "@components/admin/ProjectsForm";
-import AdminSidebar from "@components/admin/Sidebar";
-import { getCategories } from "@utils/categories";
+import { NextPage } from 'next'
+import ProjectsForm from '@components/admin/ProjectsForm'
+import AdminSidebar from '@components/admin/Sidebar'
+import { getCategories } from '@utils/categories'
 
 const NewProject: NextPage = async () => {
-  const categories = await getCategories();
+  const categories = await getCategories()
 
   return (
     <main className="pt-32 w-full max-width">
@@ -14,7 +14,7 @@ const NewProject: NextPage = async () => {
         <ProjectsForm categories={categories} />
       </div>
     </main>
-  );
-};
+  )
+}
 
-export default NewProject;
+export default NewProject

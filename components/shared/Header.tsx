@@ -1,15 +1,15 @@
 'use client'
 
-import { FC } from "react"
+import { FC } from 'react'
 
 // link and routes
-import Link from "next/link"
-import * as ROUTES from "@constants/routes"
+import Link from 'next/link'
+import * as ROUTES from '@constants/routes'
 import { usePathname } from 'next/navigation'
 
 // data and types
-import { headerData } from "@data/header"
-import { INavLink } from "@modules/NavLink"
+import { headerData } from '@data/header'
+import { INavLink } from '@modules/NavLink'
 
 export const Header: FC = () => {
   const pathname = usePathname()
@@ -26,10 +26,13 @@ export const Header: FC = () => {
             {headerData.map((item: INavLink, key: number) => {
               const { text, route } = item
               return (
-                <li key={key}
-                  className="cursor-pointer">
-                  <Link href={route}
-                    className={`${pathname === route ? "label--active" : ""} label link`}>{text}</Link>
+                <li key={key} className="cursor-pointer">
+                  <Link
+                    href={route}
+                    className={`${pathname === route ? 'label--active' : ''} label link`}
+                  >
+                    {text}
+                  </Link>
                 </li>
               )
             })}

@@ -9,22 +9,21 @@
 }
 
 /* Success toast style */
-[data-type="success"] {
+[data-type='success'] {
   background-color: #28a745; /* Green */
 }
 
 /* Error toast style */
-[data-type="error"] {
+[data-type='error'] {
   background-color: #dc3545; /* Red */
 }
 
 /* Info toast style */
-[data-type="info"] {
+[data-type='info'] {
   background-color: #17a2b8; /* Blue */
 }
 
 /* Warning toast style */
-[data-type="warning"] {
+[data-type='warning'] {
   background-color: #ffc107; /* Yellow */
 }
-

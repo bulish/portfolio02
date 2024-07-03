@@ -1,4 +1,4 @@
 export interface INavLink {
-    text: string
-    route: string
+  text: string
+  route: string
 }

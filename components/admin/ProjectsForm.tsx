@@ -1,12 +1,12 @@
-"use client"
+'use client'
 
-import { FC, useEffect, useState } from "react"
-import { useForm } from "react-hook-form"
-import { IProject } from "@modules/Project"
-import { Form } from "@components/forms/Form"
-import { projectInputs } from "@modules/forms/ProjectForm"
-import { ICategoryOption } from "@modules/CategoryOption"
-import { ISelect } from "@modules/forms/Inputs"
+import { FC, useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { IProject } from '@modules/Project'
+import { Form } from '@components/forms/Form'
+import { projectInputs } from '@modules/forms/ProjectForm'
+import { ICategoryOption } from '@modules/CategoryOption'
+import { ISelect } from '@modules/forms/Inputs'
 
 export interface IProjectsFormProps {
   categories: ICategoryOption[]
@@ -29,7 +29,7 @@ const ProjectsForm: FC<IProjectsFormProps> = (props: IProjectsFormProps) => {
   useEffect(() => {
     setInputs(prevInputs =>
       prevInputs.map(input => {
-        if (input.id === "categoryId") {
+        if (input.id === 'categoryId') {
           return {
             ...input,
             options: props.categories,
@@ -38,18 +38,14 @@ const ProjectsForm: FC<IProjectsFormProps> = (props: IProjectsFormProps) => {
         return input
       })
     )
-  }, [props.categories])  
+  }, [props.categories])
 
   return (
     <form
       className="basic-form basic-form--full-width"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <Form
-        data={inputs}
-        errors={errors}
-        register={register}
-      />
+      <Form data={inputs} errors={errors} register={register} />
     </form>
   )
 }

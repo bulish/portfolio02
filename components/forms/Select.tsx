@@ -1,9 +1,9 @@
-"use client"
+'use client'
 
-import { ICategoryOption } from "@modules/CategoryOption"
-import { ISelect, IOption } from "@modules/forms/Inputs"
-import { act, useEffect, useState } from "react"
-import { FieldValues, Path } from "react-hook-form"
+import { ICategoryOption } from '@modules/CategoryOption'
+import { ISelect, IOption } from '@modules/forms/Inputs'
+import { act, useEffect, useState } from 'react'
+import { FieldValues, Path } from 'react-hook-form'
 
 export const Select: <T extends FieldValues>(
   props: ISelect<T>
@@ -17,11 +17,10 @@ export const Select: <T extends FieldValues>(
   noPaddingOnMobile,
   readOnly,
 }: ISelect<T>) => {
-
   const error = errors[id]
 
   return (
-    <div className={`${noPaddingOnMobile ? "md:" : ""}mb-4 form__input`}>
+    <div className={`${noPaddingOnMobile ? 'md:' : ''}mb-4 form__input`}>
       <label htmlFor={id}>{placeholder}</label>
       <select
         disabled={readOnly}
@@ -30,7 +29,8 @@ export const Select: <T extends FieldValues>(
           required,
         })}
       >
-        {options && options.map((item: IOption) => {
+        {options &&
+          options.map((item: IOption) => {
             const { value, label } = item
             return (
               <option key={value} value={value}>
@@ -40,7 +40,7 @@ export const Select: <T extends FieldValues>(
           })}
       </select>
       {/* error message */}
-      {error && error.type === "required" && (
+      {error && error.type === 'required' && (
         <p className="h-6 text-left error">{error.message}</p>
       )}
     </div>

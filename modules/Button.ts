@@ -1,21 +1,21 @@
-import { ReactElement } from "react"
+import { ReactElement } from 'react'
 
 export enum ButtonType {
   submit,
   button,
   edit,
   add,
-  delete
+  delete,
 }
 
 export enum ButtonSize {
   normal,
-  large
+  large,
 }
 
 export interface IButton {
   label?: string
-  type?: ButtonType,
+  type?: ButtonType
   icon?: ReactElement
   size?: ButtonSize
   loading?: boolean

@@ -1,5 +1,5 @@
-import { ICategoryOption } from "@modules/CategoryOption"
-import { Status } from "./Status"
+import { ICategoryOption } from '@modules/CategoryOption'
+import { Status } from './Status'
 
 export interface ICategoryFormProps {
   categories: ICategoryOption[]
