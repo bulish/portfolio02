@@ -3,18 +3,14 @@
 import { FC, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Form } from '@components/forms/Form'
-import { ICategoryOption } from '@modules/CategoryOption'
-import { categoryInputs } from '@modules/forms/CategoryForm'
 import AdminButton from './Buttons'
 import { ButtonType } from '@modules/Button'
-import * as API_ROUTES from '@constants/apiRoutes'
-import * as ROUTES from '@constants/routes'
 import { useRouter } from 'next/navigation'
-import { Status } from '@modules/admin/Status'
-import { ICategoryFormProps } from '@modules/admin/Category'
+import { ICatTechFormProps } from '@modules/admin/Category'
 import { toast } from 'sonner'
+import { CatTechReq, catTechInputs } from '@modules/forms/CatTechForm'
 
-const CategoryForm: FC<ICategoryFormProps> = (props: ICategoryFormProps) => {
+const CatTechForm: FC<ICatTechFormProps> = (props: ICatTechFormProps) => {
   const [loadingBtn, setLoadingBtn] = useState<boolean>(false)
   const router = useRouter()
 
@@ -23,22 +19,25 @@ const CategoryForm: FC<ICategoryFormProps> = (props: ICategoryFormProps) => {
     formState: { errors },
     handleSubmit,
     setValue,
-  } = useForm<ICategoryOption>()
+  } = useForm<CatTechReq>()
 
   useEffect(() => {
-    if (props.data) {
-      (Object.keys(props.data) as (keyof ICategoryOption)[]).forEach(key => {
-        if (props.data) setValue(key, props.data[key])
+    if (props.activeData) {
+      (Object.keys(props.activeData) as (keyof CatTechReq)[]).forEach(key => {
+        if (props.activeData) setValue(key, props.activeData[key])
       })
     }
-  }, [props.data, setValue])
+  }, [props.activeData, setValue])
 
-  const onSubmit = async (data: ICategoryOption) => {
+  const onSubmit = async (data: CatTechReq) => {
+    if (props.allData.map(c => c.label_cs.toUpperCase()).includes(data.label_cs.toUpperCase())
+      || props.allData.map(c => c.label_en.toUpperCase()).includes(data.label_en.toUpperCase())) {
+      toast.error(`This ${props.tableName.toLowerCase()} already exists`)
+      return
+    }
+
     setLoadingBtn(true)
-    const route =
-      props.status === Status.NEW
-        ? API_ROUTES.ADD_CATEGORY
-        : API_ROUTES.EDIT_CATEGORY
+    const route = props.apiRoute
 
     try {
       const response = await fetch(route, {
@@ -48,12 +47,16 @@ const CategoryForm: FC<ICategoryFormProps> = (props: ICategoryFormProps) => {
         },
         body: JSON.stringify(data),
       })
+      router.refresh()
 
       const result = await response.json()
       if (result.mess) toast.success(result.mess)
       else if (result.error) toast.error(result.error)
+      
+      setTimeout(() => {
+        router.push(props.redirectRoute)
+      }, 1000)
 
-      router.push(ROUTES.ADMIN_CATEGORIES)
     } catch (error) {
       toast.error(error as string)
     } finally {
@@ -66,7 +69,7 @@ const CategoryForm: FC<ICategoryFormProps> = (props: ICategoryFormProps) => {
       className="basic-form basic-form--full-width"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <Form data={categoryInputs} errors={errors} register={register} />
+      <Form data={catTechInputs} errors={errors} register={register} />
 
       <div className="flex justify-end">
         <AdminButton type={ButtonType.submit} loading={loadingBtn} />
@@ -75,4 +78,4 @@ const CategoryForm: FC<ICategoryFormProps> = (props: ICategoryFormProps) => {
   )
 }
 
-export default CategoryForm
+export default CatTechForm

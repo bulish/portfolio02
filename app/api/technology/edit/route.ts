@@ -2,13 +2,8 @@ import prisma from '@lib/prisma'
 import { getServerSession } from 'next-auth/next'
 import { NextRequest, NextResponse } from 'next/server'
 
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function POST(request: NextRequest) {
   try {
-    const { id } = params
-
     const session = await getServerSession()
     if (!session) {
       NextResponse.json(
@@ -18,19 +13,26 @@ export async function DELETE(
         { status: 401 }
       )
     }
-
-    const post = await prisma.category.delete({
-      where: { id },
+    
+    const res = await request.json()
+    const result = await prisma.technology.update({
+      where: {
+        id: res.id,
+      },
+      data: {
+        label_cs: res.label_cs,
+        label_en: res.label_en,
+      },
     })
 
     return NextResponse.json({
-      data: post,
-      mess: 'Category was deleted successfully',
+      data: result,
+      mess: 'Technology was updated successfully',
     })
   } catch (error) {
     return NextResponse.json(
       {
-        error: 'An error occurred while deleting the category',
+        error: 'An error occurred while updating the technology',
       },
       { status: 500 }
     )

@@ -14,22 +14,25 @@ import { RadioInput } from './RadioInput'
 import { Checkbox } from './Checkbox'
 import { IForm } from '@modules/forms/Form'
 import { Textarea } from './Textarea'
+import { LanguageSwitcher } from './LanguageSwitcher'
+import { useState } from 'react'
+import { Languages } from '@modules/forms/LanguageSwitcher'
+import { IoFlagOutline } from 'react-icons/io5'
 
-export const Form: <T extends FieldValues>(props: IForm<T>) => JSX.Element = <
-  T extends FieldValues,
->({
-  data,
-  register,
-  errors,
-  readOnly = false,
-}: IForm<T>) => {
+export const Form = <T extends FieldValues>(props: IForm<T>) => {
+  const [activeLanguage, setActiveLanguage] = useState<string>(Languages.CS.toString())
+    
   return (
     <>
-      {data.map((input, key) => {
+      <LanguageSwitcher
+        activeLanguage={activeLanguage}
+        setActiveLanguage={setActiveLanguage}
+        errors={props.errors}
+      />
+      
+      {props.data.map(input => {
         if (
-          [InputType.NUMBER, InputType.TEXT, InputType.PASSWORD].includes(
-            input.type
-          )
+          [InputType.NUMBER, InputType.TEXT, InputType.PASSWORD].includes(input.type)
         ) {
           const {
             placeholder,
@@ -42,14 +45,15 @@ export const Form: <T extends FieldValues>(props: IForm<T>) => JSX.Element = <
             minLengthErr,
             maxLengthErr,
             noPaddingOnMobile,
+            isLocalized,
           } = input as IBasicInput<T>
           return (
             <BasicInput
-              key={key}
+              key={id}
               placeholder={placeholder}
               id={id}
-              errors={errors}
-              register={register}
+              errors={props.errors}
+              register={props.register}
               required={required}
               type={type}
               pattern={pattern}
@@ -58,7 +62,9 @@ export const Form: <T extends FieldValues>(props: IForm<T>) => JSX.Element = <
               minLengthErr={minLengthErr}
               maxLengthErr={maxLengthErr}
               noPaddingOnMobile={noPaddingOnMobile}
-              readOnly={readOnly}
+              readOnly={props.readOnly}
+              isLocalized={isLocalized}
+              activeLanguage={activeLanguage}
             />
           )
         } else if (input.type === InputType.SELECT) {
@@ -69,19 +75,22 @@ export const Form: <T extends FieldValues>(props: IForm<T>) => JSX.Element = <
             options,
             type,
             noPaddingOnMobile,
+            isLocalized
           } = input as ISelect<T>
           return (
             <Select
-              key={key}
-              register={register}
+              key={id}
+              register={props.register}
               placeholder={placeholder}
               id={id}
-              errors={errors}
+              errors={props.errors}
               required={required}
               options={options}
               type={type}
               noPaddingOnMobile={noPaddingOnMobile}
-              readOnly={readOnly}
+              readOnly={props.readOnly}
+              isLocalized={isLocalized}
+              activeLanguage={activeLanguage}
             />
           )
         } else if (input.type === InputType.RADIO) {
@@ -92,18 +101,21 @@ export const Form: <T extends FieldValues>(props: IForm<T>) => JSX.Element = <
             options,
             type,
             noPaddingOnMobile,
+            isLocalized
           } = input as IRadioInput<T>
           return (
             <RadioInput
-              key={key}
-              register={register}
+              key={id}
+              register={props.register}
               placeholder={placeholder}
               id={id}
               required={required}
               options={options}
               type={type}
               noPaddingOnMobile={noPaddingOnMobile}
-              readOnly={readOnly}
+              readOnly={props.readOnly}
+              isLocalized={isLocalized}
+              activeLanguage={activeLanguage}
             />
           )
         } else if (input.type === InputType.CHECKBOX) {
@@ -114,18 +126,21 @@ export const Form: <T extends FieldValues>(props: IForm<T>) => JSX.Element = <
             options,
             type,
             noPaddingOnMobile,
+            isLocalized
           } = input as ICheckbox<T>
           return (
             <Checkbox
-              key={key}
-              register={register}
+              key={id}
+              register={props.register}
               placeholder={placeholder}
               id={id}
               required={required}
               options={options}
               type={type}
               noPaddingOnMobile={noPaddingOnMobile}
-              readOnly={readOnly}
+              readOnly={props.readOnly}
+              isLocalized={isLocalized}
+              activeLanguage={activeLanguage}
             />
           )
         } else if (input.type === InputType.TEXTAREA) {
@@ -140,14 +155,15 @@ export const Form: <T extends FieldValues>(props: IForm<T>) => JSX.Element = <
             minLengthErr,
             maxLengthErr,
             noPaddingOnMobile,
+            isLocalized
           } = input as IBasicInput<T>
           return (
             <Textarea
-              key={key}
+              key={id}
               placeholder={placeholder}
               id={id}
-              errors={errors}
-              register={register}
+              errors={props.errors}
+              register={props.register}
               required={required}
               type={type}
               pattern={pattern}
@@ -156,11 +172,18 @@ export const Form: <T extends FieldValues>(props: IForm<T>) => JSX.Element = <
               minLengthErr={minLengthErr}
               maxLengthErr={maxLengthErr}
               noPaddingOnMobile={noPaddingOnMobile}
-              readOnly={readOnly}
+              readOnly={props.readOnly}
+              isLocalized={isLocalized}
+              activeLanguage={activeLanguage}
             />
           )
         }
       })}
+
+      <div className='text-[12px] flex gap-4'>
+        <p className='text-darkGrey'>Fields marked <span className='text-white inline'>*</span> are required.</p>
+        <p className='text-darkGrey'>Fields marked <IoFlagOutline className='inline' /> are localized.</p>
+      </div>
     </>
   )
 }

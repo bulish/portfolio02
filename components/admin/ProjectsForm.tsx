@@ -5,11 +5,11 @@ import { useForm } from 'react-hook-form'
 import { IProject } from '@modules/Project'
 import { Form } from '@components/forms/Form'
 import { projectInputs } from '@modules/forms/ProjectForm'
-import { ICategoryOption } from '@modules/CategoryOption'
 import { ISelect } from '@modules/forms/Inputs'
+import { ISelectOption } from '@modules/SelectOption'
 
 export interface IProjectsFormProps {
-  categories: ICategoryOption[]
+  categories: ISelectOption[]
 }
 
 const ProjectsForm: FC<IProjectsFormProps> = (props: IProjectsFormProps) => {
@@ -36,8 +36,7 @@ const ProjectsForm: FC<IProjectsFormProps> = (props: IProjectsFormProps) => {
           } as ISelect<IProject>
         }
         return input
-      })
-    )
+      }))
   }, [props.categories])
 
   return (

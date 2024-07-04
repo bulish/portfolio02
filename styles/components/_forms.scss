@@ -53,6 +53,10 @@
     &:focus {
       outline: none;
     }
+
+    &.input__error {
+      border-bottom: 1px solid $error;
+    }
   }
 
   input[type='checkbox'] {
@@ -74,7 +78,7 @@
   }
 
   .error {
-    font-size: clamp(0.6rem, 0.6vw, 1.15rem);
+    font-size: clamp(0.8rem, 0.75vw, 1.15rem);
     color: $error;
     font-weight: 500;
   }

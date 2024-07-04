@@ -1,11 +1,10 @@
 import { ButtonType } from '@modules/Button'
 import { IAdminTableConfig } from '@modules/admin/Table'
 
-export const categoriesTableConfig: IAdminTableConfig = {
-  tableName: 'Category',
-  thead: ['Label', 'Edit', 'Delete'],
-  parameters: ['label'],
-  colgroups: [40, 10, 10],
+const catTechTableConfig: Omit<IAdminTableConfig, "tableName"> = {
+  thead: ['Label CS', 'Label EN', 'Edit', 'Delete'],
+  parameters: ['label_cs', 'label_en'],
+  colgroups: [30, 30, 15, 15],
   buttons: [
     {
       type: ButtonType.edit,
@@ -14,4 +13,14 @@ export const categoriesTableConfig: IAdminTableConfig = {
       type: ButtonType.delete,
     },
   ],
+}
+
+export const categoriesTableConfig: IAdminTableConfig = {
+  tableName: 'Category',
+  ...catTechTableConfig
+}
+
+export const technologiesTableConfig: IAdminTableConfig = {
+  tableName: 'Technologies',
+  ...catTechTableConfig
 }

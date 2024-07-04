@@ -37,8 +37,7 @@ const AdminTable = <T extends { [key: string]: string | number }>({
         <tbody>
           {data.map((item: T, key: number) => {
             const wantedParams = Object.keys(item).filter(i =>
-              parameters.includes(i)
-            )
+              parameters.includes(i))
             return (
               <tr key={key} className="border-b border-borders">
                 {wantedParams.map((param: string, paramKey: number) => {
@@ -69,6 +68,17 @@ const AdminTable = <T extends { [key: string]: string | number }>({
               </tr>
             )
           })}
+
+          {data.length === 0 && (
+            <tr>
+              <td
+                colSpan={thead.length}
+                className="bg-terniary border border-borders p-4 text-center"
+              >
+                <p className="label">No data available</p>
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>

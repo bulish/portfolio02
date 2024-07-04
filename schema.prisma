@@ -29,13 +29,15 @@ model Image {
 }
 
 model Category {
-  id       String   @default(cuid()) @id
-  label    String
-  projects Project[]
+  id          String   @default(cuid()) @id
+  label_cs    String
+  label_en    String
+  projects    Project[]
 }
 
 model Technology {
-  id       String   @default(cuid()) @id
-  label    String
-  projects Project[]
+  id          String   @default(cuid()) @id
+  label_cs    String
+  label_en    String
+  projects    Project[]
 }

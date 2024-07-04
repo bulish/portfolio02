@@ -1,18 +1,17 @@
 import prisma from '@lib/prisma'
-import { ICategoryOption } from '@modules/CategoryOption'
+import { CatTechReq } from '@modules/forms/CatTechForm'
 
 export async function getCategories() {
   const categories = await prisma.category.findMany()
   return categories.map(category => ({
     id: category.id,
-    label: category.label,
+    label_cs: category.label_cs,
+    label_en: category.label_en,
     value: category.id,
   }))
 }
 
-export async function getCategoryById(
-  id: string
-): Promise<ICategoryOption | null> {
+export async function getCategoryById(id: string): Promise<CatTechReq | null> {
   try {
     if (!id) {
       throw new Error('ID parameter is missing or invalid')
@@ -25,7 +24,8 @@ export async function getCategoryById(
     if (!category) return null
     return {
       id: category.id,
-      label: category.label,
+      label_cs: category.label_cs,
+      label_en: category.label_en,
       value: category.id,
     }
   } catch (error) {

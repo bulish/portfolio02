@@ -1,8 +1,9 @@
-import { ICategoryOption } from '@modules/CategoryOption'
-import { Status } from './Status'
+import { CatTechReq } from '@modules/forms/CatTechForm'
 
-export interface ICategoryFormProps {
-  categories: ICategoryOption[]
-  status: Status
-  data?: ICategoryOption | null
+export interface ICatTechFormProps {
+  allData: CatTechReq[]
+  activeData?: CatTechReq | null
+  tableName: string
+  apiRoute: string
+  redirectRoute: string
 }

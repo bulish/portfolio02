@@ -1,23 +1,22 @@
 import { ICheckbox, IOption } from '@modules/forms/Inputs'
 import { FieldValues, Path } from 'react-hook-form'
-import React from 'react'
+import { InputLabel } from './InputLabel'
+import { isInputVisible } from '@utils/localization'
+import { Languages } from '@modules/forms/LanguageSwitcher'
 
-export const Checkbox: <T extends FieldValues>(
-  props: ICheckbox<T>
-) => JSX.Element = <T extends FieldValues>({
-  placeholder,
-  id,
-  required,
-  register,
-  options,
-  noPaddingOnMobile,
-  readOnly,
-}: ICheckbox<T>) => {
+export const Checkbox = <T extends FieldValues>(props: ICheckbox<T>) => {
   return (
-    <div className={`${noPaddingOnMobile ? 'md:' : ''}mb-4 form__input`}>
-      <label htmlFor={id}>{placeholder}</label>
+    <div className={`${props.noPaddingOnMobile ? 'md:' : ''}mb-4 form__input 
+      ${isInputVisible(props, props.activeLanguage ?? Languages.CS) ? "block" : "hidden"}`}>
+      
+      <InputLabel 
+        id={props.id}
+        placeholder={`${props.placeholder} ${props.required ? "*" : null}`}
+        isLocalized={props.isLocalized}
+      />
+
       <div className="w-full h-full flex flex-col gap-y-1 mt-1">
-        {options.map((option: string | IOption, key: number) => {
+        {props.options.map((option: string | IOption, key: number) => {
           const isOptionString = typeof option === 'string'
           return (
             <label
@@ -28,13 +27,13 @@ export const Checkbox: <T extends FieldValues>(
               {isOptionString ? option : option.label}
               <input
                 type="checkbox"
-                readOnly={readOnly}
+                readOnly={props.readOnly}
                 id={isOptionString ? option : option.value}
                 value={isOptionString ? option : option.value}
-                {...register(id as Path<T>, {
-                  required,
+                {...props.register(props.id as Path<T>, {
+                  required: props.required,
                 })}
-                name={id}
+                name={props.id}
               />
               <span className="checkbox__span" />
             </label>

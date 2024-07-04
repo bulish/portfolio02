@@ -22,8 +22,6 @@ export async function POST(request: NextRequest) {
       mess: 'Category was added successfully',
     })
   } catch (error) {
-    console.error('Error creating category:', error)
-
     return NextResponse.json(
       {
         error: 'An error occurred while creating the category',

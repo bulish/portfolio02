@@ -10,20 +10,20 @@
 
 /* Success toast style */
 [data-type='success'] {
-  background-color: #28a745; /* Green */
+  background-color: #28a745 !important; /* Green */
 }
 
 /* Error toast style */
 [data-type='error'] {
-  background-color: #dc3545; /* Red */
+  background-color: #dc3545 !important; /* Red */
 }
 
 /* Info toast style */
 [data-type='info'] {
-  background-color: #17a2b8; /* Blue */
+  background-color: #17a2b8 !important; /* Blue */
 }
 
 /* Warning toast style */
 [data-type='warning'] {
-  background-color: #ffc107; /* Yellow */
+  background-color: #ffc107 !important; /* Yellow */
 }

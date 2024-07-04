@@ -19,18 +19,18 @@ export async function DELETE(
       )
     }
 
-    const post = await prisma.category.delete({
+    const post = await prisma.technology.delete({
       where: { id },
     })
 
     return NextResponse.json({
       data: post,
-      mess: 'Category was deleted successfully',
+      mess: 'Technology was deleted successfully',
     })
   } catch (error) {
     return NextResponse.json(
       {
-        error: 'An error occurred while deleting the category',
+        error: 'An error occurred while deleting the technology',
       },
       { status: 500 }
     )

@@ -17,6 +17,7 @@ const config: Config = {
         lightGrey: '#F6F6F9',
         darkGrey: '#B0B0B0',
         borders: '#474F71',
+        error: '#ba0d0d'
       },
     },
   },

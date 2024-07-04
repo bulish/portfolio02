@@ -3,16 +3,32 @@ import { IGeneralInput, InputType } from './Inputs'
 
 export const projectInputs: IGeneralInput<IProject>[] = [
   {
-    placeholder: 'Název projektu',
-    id: 'title',
-    required: 'Název projektu je povinný',
+    placeholder: 'Title',
+    id: 'title_cs',
+    required: 'Title is required',
     type: InputType.TEXT,
+    isLocalized: true
   },
   {
-    placeholder: 'Popis projektu',
-    id: 'description',
+    placeholder: 'Title',
+    id: 'title_en',
+    required: 'Title is required',
+    type: InputType.TEXT,
+    isLocalized: true
+  },
+  {
+    placeholder: 'Description',
+    id: 'description_cs',
     required: 'Popis projektu je povinný',
     type: InputType.TEXTAREA,
+    isLocalized: true
+  },
+  {
+    placeholder: 'Description',
+    id: 'description_en',
+    required: 'Popis projektu je povinný',
+    type: InputType.TEXTAREA,
+    isLocalized: true
   },
   {
     placeholder: 'Kategorie',
@@ -20,26 +36,20 @@ export const projectInputs: IGeneralInput<IProject>[] = [
     required: 'Kategorie je povinná',
     type: InputType.SELECT,
     options: [],
-  },
-  {
-    placeholder: 'Publikovaný',
-    id: 'published',
-    options: [
-      { value: 'true', label: 'YES' },
-      { value: 'false', label: 'NO' },
-    ],
-    type: InputType.RADIO,
+    isLocalized: false
   },
   {
     placeholder: 'Technologie',
     id: 'technologies',
     required: 'Technologie jsou povinné',
     type: InputType.TEXT,
+    isLocalized: false
   },
   {
     placeholder: 'Obrázky',
     id: 'images',
     required: 'Obrázky jsou povinné',
     type: InputType.TEXT,
+    isLocalized: false
   },
 ]

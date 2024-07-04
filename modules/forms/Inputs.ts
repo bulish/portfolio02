@@ -17,48 +17,37 @@ export type IGeneralInput<T extends FieldValues> =
   | Omit<ICheckbox<T>, 'register' | 'errors'>
   | Omit<ITextarea<T>, 'register' | 'errors'>
 
-export interface IBasicInput<T extends FieldValues> {
+export interface IBaseInput<T extends FieldValues> {
   placeholder: string
   id: Path<T> | string
   required?: string
-  pattern?: RegExp
   register: UseFormRegister<T>
   errors: any
   type: InputType
+  noPaddingOnMobile?: boolean
+  readOnly?: boolean
+  isLocalized: boolean
+  activeLanguage?: string
+}
+
+export interface IBasicInput<T extends FieldValues> extends IBaseInput<T> {
+  pattern?: RegExp
   min?: number
   max?: number
   minLengthErr?: string
   maxLengthErr?: string
-  noPaddingOnMobile?: boolean
-  readOnly?: boolean
 }
 
-export interface ITextarea<T extends FieldValues> {
-  placeholder: string
-  id: Path<T> | string
-  required?: string
+export interface ITextarea<T extends FieldValues> extends IBaseInput<T> {
   pattern?: RegExp
-  register: UseFormRegister<T>
-  errors: any
-  type: InputType
   min?: number
   max?: number
   minLengthErr?: string
   maxLengthErr?: string
-  noPaddingOnMobile?: boolean
-  readOnly?: boolean
 }
 
-export interface ISelect<T extends FieldValues> {
-  placeholder: string
-  id: Path<T> | string
-  required?: string
-  register: UseFormRegister<T>
-  errors: any
+export interface ISelect<T extends FieldValues> extends IBaseInput<T> {
   options: IOption[]
-  type: InputType
-  noPaddingOnMobile?: boolean
-  readOnly?: boolean
 }
 
 export interface IOption {
@@ -66,24 +55,10 @@ export interface IOption {
   label: string
 }
 
-export interface IRadioInput<T extends FieldValues> {
-  placeholder: string
-  id: Path<T> | string
-  required?: string
-  register: UseFormRegister<T>
+export interface IRadioInput<T extends FieldValues> extends Omit<IBaseInput<T>, 'errors'> {
   options: IOption[]
-  type: InputType
-  noPaddingOnMobile?: boolean
-  readOnly?: boolean
 }
 
-export interface ICheckbox<T extends FieldValues> {
-  placeholder: string
-  id: Path<T> | string
-  required?: string
-  register: UseFormRegister<T>
+export interface ICheckbox<T extends FieldValues> extends Omit<IBaseInput<T>, 'errors'> {
   options: string[] | IOption[]
-  type: InputType
-  noPaddingOnMobile?: boolean
-  readOnly?: boolean
 }

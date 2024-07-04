@@ -20,7 +20,8 @@ export async function POST(request: NextRequest) {
         id: res.id,
       },
       data: {
-        label: res.label,
+        label_cs: res.label_cs,
+        label_en: res.label_en,
       },
     })
 
@@ -29,8 +30,6 @@ export async function POST(request: NextRequest) {
       mess: 'Category was updated successfully',
     })
   } catch (error) {
-    console.error('Error updating category:', error)
-
     return NextResponse.json(
       {
         error: 'An error occurred while updating the category',

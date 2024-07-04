@@ -4,30 +4,30 @@ import { NextPage } from 'next'
 import AdminSidebar from '@components/admin/Sidebar'
 import * as API_ROUTES from "@constants/apiRoutes"
 import * as ROUTES from "@constants/routes"
-import { getCategories, getCategoryById } from '@utils/categories'
 import CatTechForm from '@components/admin/CatTechForm'
+import { getTechnologies, getTechnologyById } from '@utils/technologies'
 
-const EditCategory: NextPage<{
+const EditTechnology: NextPage<{
   params: any
 }> = async ({ params }) => {
-  const data = await getCategoryById(params.id)
-  const categories = await getCategories()
+  const data = await getTechnologyById(params.id)
+  const technologies = await getTechnologies()
 
   return (
     <main className="pt-32 w-full max-width">
-      <h1 className="heading-1">Edit Category</h1>
+      <h1 className="heading-1">Edit Technology</h1>
       <div className="relative pt-8 w-full h-full flex gap-16">
         <AdminSidebar />
         <CatTechForm
-          allData={categories}
+          allData={technologies}
           activeData={data}
-          tableName='category'
-          apiRoute={API_ROUTES.EDIT_CATEGORY}
-          redirectRoute={ROUTES.ADMIN_CATEGORIES}
+          tableName='technology'
+          apiRoute={API_ROUTES.EDIT_TECHNOLOGY}
+          redirectRoute={ROUTES.ADMIN_TECHNOLOGIES}
         />
       </div>
     </main>
   )
 }
 
-export default EditCategory
+export default EditTechnology
