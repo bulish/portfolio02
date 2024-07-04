@@ -7,4 +7,5 @@ export const ADMIN_PROJECTS = '/admin/projects'
 export const ADMIN_CATEGORIES = '/admin/category'
 export const ADMIN_TECHNOLOGIES = '/admin/technologies'
 
+export const LOGIN = "/api/auth/signin"
 export const LOGOUT = '/logout'

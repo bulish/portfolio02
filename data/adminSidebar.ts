@@ -16,6 +16,6 @@ export const adminSidebarData: INavLink[] = [
   },
   {
     text: 'Log out',
-    route: ROUTES.LOGOUT,
+    route: null,
   },
 ]

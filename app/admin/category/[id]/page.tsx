@@ -7,12 +7,19 @@ import CategoriesForm from '@components/admin/CategoriesForm'
 import { Status } from '@modules/admin/Status'
 import { getCategoryById } from '@utils/categories'
 import { Params } from 'next/dist/shared/lib/router/utils/route-matcher'
+import { getServerSession } from 'next-auth'
+import { redirect } from 'next/navigation'
+import * as ROUTES from "@constants/routes"
 
 const EditCategory: NextPage<{
   categories: ICategoryOption[]
   params: Params
 }> = async ({ categories, params }) => {
   const data = await getCategoryById(params.id)
+  const session = await getServerSession()
+
+  if (!session || !session.user) redirect(ROUTES.LOGIN)
+
   return (
     <main className="pt-32 w-full max-width">
       <h1 className="heading-1">Edit Category</h1>

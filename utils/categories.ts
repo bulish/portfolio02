@@ -13,7 +13,6 @@ export async function getCategories() {
 export async function getCategoryById(
   id: string
 ): Promise<ICategoryOption | null> {
-  console.log(id)
   try {
     if (!id) {
       throw new Error('ID parameter is missing or invalid')
@@ -24,8 +23,6 @@ export async function getCategoryById(
     })
 
     if (!category) return null
-
-    console.log(category)
     return {
       id: category.id,
       label: category.label,

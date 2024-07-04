@@ -3,7 +3,6 @@ import AdminSidebar from '@components/admin/Sidebar'
 import AdminTable from '@components/admin/AdminTable'
 import { getCategories } from '@utils/categories'
 import { categoriesTableConfig } from '@data/adminTableConfig'
-import Button from '@components/shared/Button'
 import { ButtonType } from '@modules/Button'
 import AdminButton from '@components/admin/Buttons'
 

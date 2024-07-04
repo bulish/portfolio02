@@ -11,7 +11,6 @@ async function getProjects() {
 
 const Projects: NextPage = async () => {
   const projects = await getProjects()
-  console.log({ projects })
 
   return (
     <main className="pt-24 w-full max-width h-full">

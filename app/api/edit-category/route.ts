@@ -1,8 +1,19 @@
 import prisma from '@lib/prisma'
+import { getServerSession } from 'next-auth/next'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(request: NextRequest) {
   try {
+    const session = await getServerSession()
+    if (!session) {
+      NextResponse.json(
+        {
+          error: 'User is not authenticated',
+        },
+        { status: 401 }
+      )
+    }
+    
     const res = await request.json()
     const result = await prisma.category.update({
       where: {

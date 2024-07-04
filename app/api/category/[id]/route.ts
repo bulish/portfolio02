@@ -1,4 +1,5 @@
 import prisma from '@lib/prisma'
+import { getServerSession } from 'next-auth/next'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function DELETE(
@@ -7,6 +8,17 @@ export async function DELETE(
 ) {
   try {
     const { id } = params
+
+    const session = await getServerSession()
+    if (!session) {
+      NextResponse.json(
+        {
+          error: 'User is not authenticated',
+        },
+        { status: 401 }
+      )
+    }
+
     const post = await prisma.category.delete({
       where: { id },
     })

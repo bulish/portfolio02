@@ -1,4 +1,5 @@
 import prisma from '@lib/prisma'
+import { getServerSession } from 'next-auth'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(request: NextRequest) {
@@ -7,6 +8,14 @@ export async function POST(request: NextRequest) {
     const result = await prisma.category.create({
       data: res,
     })
+
+    const session = await getServerSession()
+    if (!session) {
+      res.status(401).json({
+        error: 'User is not authenticated',
+      })
+      return
+    }
 
     return NextResponse.json({
       data: result,
