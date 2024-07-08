@@ -8,7 +8,7 @@ import Image from 'next/image'
 
 export const SocialsPanel: FC = () => {
   return (
-    <div className="fixed top-0 h-full w-16 border-r-[0.5px] border-borders">
+    <div className="lg:fixed hidden top-0 h-full w-16 border-r-[0.5px] border-bordersColor">
       <ul className="flex flex-col justify-center items-center gap-4 h-full w-full">
         {socialsData.map((item: ISocial, key: number) => {
           const { icon, link, alt } = item
@@ -24,7 +24,7 @@ export const SocialsPanel: FC = () => {
 
                 <span
                   className="absolute top-0 left-0 -traslate-x-1/2 -traslate-y-1/2 w-full h-full rounded-full
-                        border-white border-2 duration-300"
+                        border-whiteColor border-2 duration-300"
                 />
               </a>
             </li>

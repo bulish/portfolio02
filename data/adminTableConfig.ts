@@ -1,10 +1,19 @@
 import { ButtonType } from '@modules/Button'
 import { IAdminTableConfig } from '@modules/admin/Table'
 
-const catTechTableConfig: Omit<IAdminTableConfig, "tableName"> = {
-  thead: ['Label CS', 'Label EN', 'Edit', 'Delete'],
-  parameters: ['label_cs', 'label_en'],
-  colgroups: [30, 30, 15, 15],
+const catTechTableConfig: Omit<IAdminTableConfig, "tableName" | "routeName"> = {
+  columns: [
+    {
+      header: "Label CS",
+      field: "label_cs",
+      sortable: true
+    },
+    {
+      header: "Label EN",
+      field: "label_en",
+      sortable: true
+    }
+  ],
   buttons: [
     {
       type: ButtonType.edit,
@@ -17,10 +26,12 @@ const catTechTableConfig: Omit<IAdminTableConfig, "tableName"> = {
 
 export const categoriesTableConfig: IAdminTableConfig = {
   tableName: 'Category',
+  routeName: 'Categories',
   ...catTechTableConfig
 }
 
 export const technologiesTableConfig: IAdminTableConfig = {
-  tableName: 'Technologies',
+  tableName: 'Technology',
+  routeName: 'Technologies',
   ...catTechTableConfig
 }

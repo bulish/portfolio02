@@ -1,0 +1,52 @@
+.confirm {
+  .p-dialog-title {
+    font-weight: 600;
+    @apply font-medium lg:text-[20px] text-[17px] tracking-wide leading-8 duration-300;
+  }
+
+  .p-dialog-content {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    span:before {
+      @apply font-medium lg:text-[30px] text-[24px] tracking-wide leading-8 duration-300;
+    }
+
+    .p-confirm-dialog-message {
+      @apply lg:text-[16px] text-[16px] tracking-wide leading-normal;
+    }
+  }
+
+  .p-dialog-footer {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+
+    button {
+      padding: 0.45rem 1rem;
+  
+      border-radius: 10px;
+      line-height: 1.35;
+    
+      transition: all 350ms;
+
+      &:first-of-type {
+        background-color: $errorColor;
+
+        &:hover {
+          background-color: darken($color: $errorColor, $amount: 20%);
+        }
+      }
+
+      &:last-of-type {
+        background-color: $successColor;
+
+        &:hover {
+          background-color: darken($color: $successColor, $amount: 10%);
+        }
+      }
+    }
+  }
+}

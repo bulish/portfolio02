@@ -9,10 +9,10 @@ const Home: NextPage = () => {
       <div className="flex gap-32 h-full justify-center items-center">
         <div className="w-full h-full flex flex-col justify-center">
           <p className="heading-3">
-            <span className="text-primary">Hi!</span> My name is
+            <span className="text-primaryColor">Hi!</span> My name is
           </p>
           <h1 className="heading-1">
-            Libuše <span className="text-primary">Babičková</span>
+            Libuše <span className="text-primaryColor">Babičková</span>
           </h1>
 
           <p className="text my-8">

@@ -1,86 +1,129 @@
 'use client'
 
 import { ButtonType, IButton } from '@modules/Button'
-import { IAdminTableProps } from '@modules/admin/Table'
+import { IAdminTableProps, IColumn } from '@modules/admin/Table'
 import AdminButton from './Buttons'
+import { BulkActionsDropdown } from './BulkActionsDropdown'
+import { IActionOption } from '@modules/admin/Dropdown'
+import { TriStateCheckbox } from 'primereact/tristatecheckbox'
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { handleDelete } from '@utils/common'
+import { Column } from 'primereact/column'
+import { TreeNode } from 'primereact/treenode'
+import { DataTable, DataTableValue } from 'primereact/datatable'
+
+export const transformDataToTableData = <T extends { [key: string]: string | number  }>(data: T[], columns: IColumn[]): DataTableValue[] => {
+  return data.map(item => ({
+    id: item.id as string,
+    key: item.id,
+    ...columns.reduce((acc, col) => ({ ...acc, [col.field]: item[col.field] }), {})
+  }))
+}
 
 const AdminTable = <T extends { [key: string]: string | number }>({
   data,
   config,
 }: IAdminTableProps<T>) => {
-  const { colgroups, thead, parameters, buttons } = config
+  const { columns, buttons } = config
+  const [selectedItems, setSelectedItems] = useState<DataTableValue[]>([])
+  const router = useRouter()
+
+  const handleCheckboxChange = (val: boolean, item: T) => {
+    setSelectedItems((prevSelectedItems) => {
+      if (prevSelectedItems.includes(item)) {
+        return prevSelectedItems.filter((i) => i !== item)
+      } else {
+        return [...prevSelectedItems, item]
+      }
+    })
+  }
+
+  const handleCommonCheckboxChange = () => {
+    if (selectedItems.length === data.length) {
+      setSelectedItems([])
+    } else {
+      setSelectedItems(data)
+    }
+  }
+
+  const bulkActions: IActionOption[] = [
+    {
+      label: 'Delete',
+      icon: 'pi pi-trash',
+      command: async () => {
+        const deletedIds = await handleDelete(
+          config.tableName.toLowerCase(),
+          selectedItems.map(s => s.id as string),
+          () => { router.refresh() }
+        )
+
+        if (deletedIds) {
+          setSelectedItems(selectedItems.filter(item => !deletedIds.includes(item.id as string)))
+        }
+      }
+    },
+  ]
+
+  const isCheckboxActive = (item: T) => {
+    return selectedItems.some(selectedItem => selectedItem.id === item.id)
+  }
+
+  useEffect(() => {
+    if (data.length === 0 && selectedItems.length > 0) {
+      setSelectedItems([])
+    }
+  }, [data, selectedItems])
 
   return (
     <div className="w-full">
-      <table className="w-full border border-borders">
-        <colgroup>
-          {colgroups.map((width: number, key: number) => {
-            return <col key={key} style={{ width: width + '%' }} />
-          })}
-        </colgroup>
+      <div className="flex justify-between items-center">
+        <BulkActionsDropdown
+          actions={bulkActions}
+          disabled={selectedItems.length === 0}
+        />
+          
+        <AdminButton
+          type={ButtonType.add}
+          tableName={config.routeName}
+        />
+      </div>
 
-        <thead className="border-b-2 border-borders">
-          <tr>
-            {thead.map((item: string, key: number) => {
-              return (
-                <th
-                  key={key}
-                  className={`text-left py-2 px-4 ${key < thead.length - 1 ? 'border-r border-borders' : ''}`}
-                >
-                  {item}
-                </th>
-              )
-            })}
-          </tr>
-        </thead>
+      <DataTable
+        value={transformDataToTableData(data, columns)}
+        selection={selectedItems}
+        onSelectionChange={e => setSelectedItems(e.value)}
+        selectionMode="checkbox"
+        dataKey="id"
+      >
+        <Column
+          selectionMode="multiple"
+          header={<TriStateCheckbox value={selectedItems.length === data.length} onChange={handleCommonCheckboxChange} />}
+        />
+        {columns.map(col => {
+          const { header, field } = col
+          return <Column
+            key={field}
+            field={field}
+            header={header}
+            sortable
+          />
+        })}
+        {buttons.map((button: IButton, buttonKey: number) => (
+          <Column
+            key={buttonKey}
+            body={rowData => (
+              <AdminButton
+                type={button.type as ButtonType}
+                tableName={config.tableName}
+                routeName={config.routeName}
+                id={rowData.id as string}
+              />
+            )}
+          />
+        ))}
+      </DataTable>
 
-        <tbody>
-          {data.map((item: T, key: number) => {
-            const wantedParams = Object.keys(item).filter(i =>
-              parameters.includes(i))
-            return (
-              <tr key={key} className="border-b border-borders">
-                {wantedParams.map((param: string, paramKey: number) => {
-                  return (
-                    <td
-                      key={paramKey}
-                      className={`text-left py-2 px-4 ${paramKey < thead.length - 1 ? 'border-r border-borders' : ''}`}
-                    >
-                      {item[param]}
-                    </td>
-                  )
-                })}
-
-                {buttons.map((button: IButton, buttonKey: number) => {
-                  return (
-                    <td
-                      key={buttonKey}
-                      className={`text-left py-2 px-4 ${buttonKey < thead.length - 1 ? 'border-r border-borders' : ''}`}
-                    >
-                      <AdminButton
-                        type={button.type as ButtonType}
-                        tableName={config.tableName}
-                        id={item.id as string}
-                      />
-                    </td>
-                  )
-                })}
-              </tr>
-            )
-          })}
-
-          {data.length === 0 && (
-            <tr>
-              <td
-                colSpan={thead.length}
-                className="bg-terniary border border-borders p-4 text-center"
-              >
-                <p className="label">No data available</p>
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
     </div>
   )
 }

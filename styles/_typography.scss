@@ -7,7 +7,7 @@
 }
 
 .label--active {
-  @apply text-primary #{!important};
+  @apply text-primaryColor #{!important};
 }
 
 .heading-4 {
@@ -19,7 +19,7 @@
 }
 
 .heading-1 {
-  @apply lg:text-[64px] text-[56px] font-normal tracking-wide leading-normal;
+  @apply lg:text-[64px] md:text-[44px] text-[36px] font-normal tracking-wide leading-normal;
 }
 
 .text {

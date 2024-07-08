@@ -181,8 +181,8 @@ export const Form = <T extends FieldValues>(props: IForm<T>) => {
       })}
 
       <div className='text-[12px] flex gap-4'>
-        <p className='text-darkGrey'>Fields marked <span className='text-white inline'>*</span> are required.</p>
-        <p className='text-darkGrey'>Fields marked <IoFlagOutline className='inline' /> are localized.</p>
+        <p className='text-darkGreyColor'>Fields marked <span className='text-whiteColor inline'>*</span> are required.</p>
+        <p className='text-darkGreyColor'>Fields marked <IoFlagOutline className='inline' /> are localized.</p>
       </div>
     </>
   )

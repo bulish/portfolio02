@@ -4,8 +4,8 @@
   padding: 2rem 1rem;
   margin: auto;
 
-  background-color: $black;
-  border: 1px solid $borders;
+  background-color: $blackColor;
+  border: 1px solid $bordersColor;
 
   &.basic-form--full-width {
     width: 100%;
@@ -36,18 +36,18 @@
 
     background-color: transparent;
     border: none;
-    border-bottom: 1px solid $borders;
+    border-bottom: 1px solid $bordersColor;
 
     outline: none;
-    color: $white;
+    color: $whiteColor;
     font-size: clamp(0.8rem, 0.8vw, 1.38rem);
 
     &:not(:read-only) {
-      border-bottom: 1px solid $borders;
+      border-bottom: 1px solid $bordersColor;
     }
 
     &::placeholder {
-      color: $white;
+      color: $whiteColor;
     }
 
     &:focus {
@@ -55,7 +55,7 @@
     }
 
     &.input__error {
-      border-bottom: 1px solid $error;
+      border-bottom: 1px solid $errorColor;
     }
   }
 
@@ -67,26 +67,26 @@
   }
 
   input[type='radio']:checked + label {
-    background-color: $primary !important;
-    color: $white !important;
+    background-color: $primaryColor !important;
+    color: $whiteColor !important;
   }
 
   .form__input label:not(.button) {
     text-transform: uppercase;
     font-size: clamp(0.7rem, 0.7vw, 1.1rem);
-    color: $white;
+    color: $whiteColor;
   }
 
   .error {
     font-size: clamp(0.8rem, 0.75vw, 1.15rem);
-    color: $error;
+    color: $errorColor;
     font-weight: 500;
   }
 
   input:-webkit-autofill,
   select:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 50px white inset;
-    -webkit-text-fill-color: $black;
+    -webkit-box-shadow: 0 0 0 50px $blackColor inset;
+    -webkit-text-fill-color: $whiteColor;
     outline: none !important;
   }
 

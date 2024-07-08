@@ -29,15 +29,15 @@
   height: 20px;
   width: 20px;
 
-  background-color: $lightGrey;
+  background-color: $lightGreyColor;
 }
 
 .ceckbox-container:hover input ~ .checkbox__span {
-  background-color: $secondary;
+  background-color: $secondaryColor;
 }
 
 .checkbox-container input:checked ~ .checkbox__span {
-  background-color: $primary !important;
+  background-color: $primaryColor !important;
 }
 
 .checkbox__span:after {
@@ -58,9 +58,23 @@
   width: 5px;
   height: 10px;
 
-  border: solid $white;
+  border: solid $whiteColor;
   border-width: 0 2px 2px 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+.p-checkbox-box {
+  display: none;
+}
+
+.p-checkbox {
+  text-align: center;
+}
+
+.p-checkbox-input {
+  width: 1rem !important;
+  height: 1rem !important;
+  margin: auto
 }

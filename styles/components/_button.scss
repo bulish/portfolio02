@@ -1,14 +1,14 @@
 .button {
   padding: 0.45rem 1rem;
 
-  background-color: $secondary;
+  background-color: $secondaryColor;
   border-radius: 10px;
   line-height: 1.35;
 
   transition: all 350ms;
 
   &:hover {
-    background-color: darken($color: $secondary, $amount: 20%);
+    background-color: darken($color: $secondaryColor, $amount: 20%);
   }
 }
 

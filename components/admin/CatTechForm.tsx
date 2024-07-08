@@ -30,9 +30,13 @@ const CatTechForm: FC<ICatTechFormProps> = (props: ICatTechFormProps) => {
   }, [props.activeData, setValue])
 
   const onSubmit = async (data: CatTechReq) => {
-    if (props.allData.map(c => c.label_cs.toUpperCase()).includes(data.label_cs.toUpperCase())
-      || props.allData.map(c => c.label_en.toUpperCase()).includes(data.label_en.toUpperCase())) {
-      toast.error(`This ${props.tableName.toLowerCase()} already exists`)
+    if (props.allData.map(c => c.label_cs.toUpperCase()).includes(data.label_cs.toUpperCase())) {
+      toast.error(`The ${props.tableName.toLowerCase()} with czech label "${data.label_cs}" already exists`)
+      return
+    }
+
+    if (props.allData.map(c => c.label_en.toUpperCase()).includes(data.label_en.toUpperCase())) {
+      toast.error(`The ${props.tableName.toLowerCase()} with english label "${data.label_en}" already exists`)
       return
     }
 

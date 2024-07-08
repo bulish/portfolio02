@@ -6,35 +6,26 @@ import { ButtonSize, ButtonType } from '@modules/Button'
 import Link from 'next/link'
 import { FaPlusCircle, FaEdit, FaTrash } from 'react-icons/fa'
 import { useRouter } from 'next/navigation'
-import { toast } from 'sonner'
 import { IAdminButton } from '@modules/admin/Button'
+import { handleDelete } from '@utils/common'
 
-const AdminButton: FC<IAdminButton> = ({ tableName, id, type, loading }) => {
+const AdminButton: FC<IAdminButton> = ({ tableName, id, type, loading, routeName }) => {
   const router = useRouter()
 
-  async function handleDelete() {
-    try {
-      const response = await fetch(`/api/${tableName?.toLowerCase()}/${id}`, {
-        method: 'DELETE',
-      })
-
-      const result = await response.json()
-
-      if (result.mess) toast.success(result.mess)
-      else if (result.error) toast.error(result.error)
-
-      router.refresh()
-    } catch (e) {
-      toast.error(e as string)
-    }
+  async function handleDeleteHelper() {
+    await handleDelete(
+      tableName?.toLowerCase() as string,
+      [id as string],
+      () => { router.refresh() }
+    )
   }
-
+  
   switch (type) {
     case ButtonType.edit:
       return (
         <Link
           className="button flex items-center gap-3 w-max font-medium"
-          href={`/admin/${tableName?.toLowerCase()}/${id}`}
+          href={`/admin/${routeName?.toLowerCase()}/${id}`}
         >
           <FaEdit />
           Edit
@@ -44,8 +35,8 @@ const AdminButton: FC<IAdminButton> = ({ tableName, id, type, loading }) => {
     case ButtonType.add:
       return (
         <Link
-          className="button flex items-center gap-3 w-max"
-          href={`/admin/${tableName?.toLowerCase()}/new`}
+          className="button flex items-center gap-3 w-max h-max"
+          href={`/admin/${routeName?.toLowerCase()}/new`}
         >
           <FaPlusCircle />
           Add
@@ -57,7 +48,7 @@ const AdminButton: FC<IAdminButton> = ({ tableName, id, type, loading }) => {
         <Button
           label="Delete"
           size={ButtonSize.normal}
-          handleClick={handleDelete}
+          handleClick={handleDeleteHelper}
           icon={<FaTrash />}
         />
       )

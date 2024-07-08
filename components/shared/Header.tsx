@@ -18,17 +18,17 @@ export const Header: FC = () => {
     <header className="fixed w-full py-12">
       <div className="max-width flex justify-between">
         <Link href={ROUTES.HOME} className="label">
-          &lt;Libuše Babičková <span className="text-primary">/</span>&gt;
+          &lt;Libuše Babičková <span className="text-primaryColor">/</span>&gt;
         </Link>
 
         <nav>
-          <ul className="flex gap-12 items-center">
+          <ul className="lg:flex hidden gap-12 items-center">
             {headerData.map((item: INavLink, key: number) => {
               const { text, route } = item
               return (
                 <li key={key} className="cursor-pointer">
                   <Link
-                    href={route}
+                    href={route as string}
                     className={`${pathname === route ? 'label--active' : ''} label link`}
                   >
                     {text}

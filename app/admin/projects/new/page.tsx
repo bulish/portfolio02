@@ -9,7 +9,7 @@ const NewProject: NextPage = async () => {
   return (
     <main className="pt-32 w-full max-width">
       <h1 className="heading-1">New Project</h1>
-      <div className="relative pt-8 w-full h-full flex gap-16">
+      <div className="relative pt-8 w-full h-full flex lg:flex-row flex-col lg:gap-16 gap-4">
         <AdminSidebar />
         <ProjectsForm categories={categories} />
       </div>

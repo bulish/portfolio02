@@ -7,12 +7,13 @@ import Image from 'next/image'
 import { SelectButton } from 'primereact/selectbutton'
 
 export const LanguageSwitcher: FC<ILanguageSwitcherProps> = (props) => {
+
   const justifyTemplate = (option: IOptionIcon) => {
     const isSelected = props.activeLanguage?.toLowerCase() === option.value.toLowerCase()
-    const borderColor = isError(option.value) ? "red-400 bg-error/50" : isSelected ? "borders" : "transparent"
+    const borderColor = isError(option.value) ? "red-400 bg-error/50" : isSelected ? "borders" : " inactiv"
 
     return (
-      <div className={`border border-${borderColor} p-2 rounded-md h-full`}>
+      <div className={`border-2 border-${borderColor} p-2 rounded-md h-full`}>
         <Image
           src={option.icon}
           alt={option.label}
@@ -41,7 +42,7 @@ export const LanguageSwitcher: FC<ILanguageSwitcherProps> = (props) => {
       itemTemplate={justifyTemplate}
       optionLabel="value"
       options={languageOptions}
-      className='mb-8 flex gap-2'
+      className='mb-8'
     />
   )
 }

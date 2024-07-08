@@ -9,15 +9,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        black: '#121423',
-        primary: '#006CF4',
-        secondary: '#175CCD',
-        terniary: '#192141',
-        white: '#FFFFFF',
-        lightGrey: '#F6F6F9',
-        darkGrey: '#B0B0B0',
-        borders: '#474F71',
-        error: '#ba0d0d'
+        blackColor: '#121423',
+        primaryColor: '#006CF4',
+        secondaryColor: '#175CCD',
+        terniaryColor: '#192141',
+        whiteColor: '#FFFFFF',
+        lightGreyColor: '#F6F6F9',
+        darkGreyColor: '#B0B0B0',
+        bordersColor: '#474F71',
+        errorColor: '#ba0d0d',
+        succcessColor: '#107a49'
       },
     },
   },
